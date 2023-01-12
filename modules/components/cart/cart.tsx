@@ -2,6 +2,7 @@ import { Fragment, useCallback } from "react";
 import { BasketCard, Button, Empty } from "../../../shared";
 import { CartActionKind } from "../../context/actions";
 import { useAppContext } from "../../context/context";
+import { formatPrice } from "../../utils";
 import {
   StyledCart,
   CartContainer,
@@ -18,10 +19,7 @@ const Cart: React.FC = () => {
       payload: id,
     });
   };
-  const price = cartState.selected.reduce(
-    (acc, curr) => acc + curr.price,
-    0
-  );
+  const price = cartState.selected.reduce((acc, curr) => acc + curr.price, 0);
   return (
     <StyledCart>
       <Fragment>
@@ -48,7 +46,7 @@ const Cart: React.FC = () => {
               <CartFooter>
                 <div className="total">
                   <span>Total:</span>
-                  <span>{`£${price}`}</span>
+                  <span>{formatPrice(price)}</span>
                 </div>
                 <Button label="Order" block variant="primary" />
               </CartFooter>

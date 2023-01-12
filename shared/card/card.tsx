@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { IItem } from "../../common/types";
+import { formatPrice } from "../../modules/utils";
 import { Button } from "../button";
 import { StyledCard, CardImage, CardDetails, CardFooter } from "./card.styled";
 
@@ -7,9 +8,15 @@ interface ICardOwn {
   handleAdd: () => void;
 }
 
-interface ICard extends IItem, ICardOwn {};
+interface ICard extends IItem, ICardOwn {}
 
-const Card: React.FC<ICard> = ({ image, title, description, price, handleAdd }) => {
+const Card: React.FC<ICard> = ({
+  image,
+  title,
+  description,
+  price,
+  handleAdd,
+}) => {
   return (
     <StyledCard>
       <CardImage>
@@ -19,8 +26,13 @@ const Card: React.FC<ICard> = ({ image, title, description, price, handleAdd }) 
         <div className="card-title">{title}</div>
         {description && <div className="card-description">{description}</div>}
         <CardFooter>
-          <Button label="Add to cart" size="small" variant="primary" onClick={handleAdd} />
-          <div className="card-price">{`£${price}`}</div>
+          <Button
+            label="Add to cart"
+            size="small"
+            variant="primary"
+            onClick={handleAdd}
+          />
+          <div className="card-price">{formatPrice(price)}</div>
         </CardFooter>
       </CardDetails>
     </StyledCard>
