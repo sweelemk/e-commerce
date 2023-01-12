@@ -21,7 +21,7 @@ export default function Home() {
     <Fragment>
       <HomeSearchBox>
         <Search placeholder="Search for items" handleSubmit={setSearchQuery} disabled={isLoading} />
-      </HomeSearchBox>
+      </HomeSearchBox> 
       {isLoading ? (
         <LoaderContainer>
           <Loader />
